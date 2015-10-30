@@ -2,40 +2,45 @@ package action;
 
 import java.util.ArrayList;
 
-public class Scheduler extends Action {
+public abstract class Scheduler extends Action {
 	
 	protected final ArrayList<Action> actions = new ArrayList<Action>();
 
-	public Scheduler(int timeToEnd) {
-		super(timeToEnd);
+	/**
+	 * the constructor of a scheduler
+	 */
+	public Scheduler() {
+		super(0);
 	}
 	
+	@Override
 	public boolean isReady() {
 		return isInitialized && isReady;
 	}
 
+	@Override
 	public boolean isInProgress() {
 		return isInitialized && !isReady() && !isFinished();
 	}
 	
+	@Override
 	public boolean isFinished() {
 		return isInitialized && !isReady() && actions.isEmpty();
 	}
 
-	public void doStep() {
-		isReady = false;
-		Action nextAction = actions.get(0);
-		nextAction.doStep();
-		if(nextAction.isFinished())
-			actions.remove(0);
-	}
+	@Override
+	public abstract void doStep();
 	
+	/**
+	 * add a action to the scheduler
+	 * @param subAction the action to add
+	 */
 	public void addAction(Action subAction) {
 		isInitialized = true;
 		if(subAction.isFinished())
 			throw new IllegalArgumentException("Can't add an already finished action");
 		if(isFinished())
-			throw new IllegalStateException("You cna't add an action to a finished scheduler");
+			throw new IllegalStateException("You can't add an action to a finished scheduler");
 		else
 			actions.add(subAction);
 	}

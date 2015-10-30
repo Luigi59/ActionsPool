@@ -3,7 +3,7 @@ package pool;
 public class BasketPool extends ResourcePool<Basket> {
 	
 	/**
-	 * the baskets of a pool
+	 * the constructor of a basket pool
 	 * @param nbResource the number of baskets
 	 */
 	public BasketPool(int nbResource) {

@@ -3,7 +3,7 @@ package pool;
 public class CubiclePool extends ResourcePool<Cubicle>{
 
 	/**
-	 * the cubicles of a pool
+	 * the constructor of a cubicle pool
 	 * @param nbResource the number of cubicles
 	 */
 	public CubiclePool(int nbResource) {

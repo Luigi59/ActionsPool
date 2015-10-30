@@ -2,8 +2,20 @@ package action;
 
 public class SequentialScheduler extends Scheduler {
 
-	public SequentialScheduler(int timeToEnd) {
-		super(timeToEnd);
+	/**
+	 * the constructor of a sequential scheduler
+	 */
+	public SequentialScheduler() {
+		super();
 	}
 
+	@Override
+	public void doStep() {
+		isReady = false;
+		Action nextAction = actions.get(0);
+		nextAction.doStep();
+		if(nextAction.isFinished())
+			actions.remove(0);
+	}
+	
 }

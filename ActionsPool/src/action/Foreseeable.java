@@ -1,25 +1,14 @@
 package action;
 
-import pool.Resource;
-import pool.ResourcePool;
-import pool.ResourcefulUser;
-
-public class ResourceAction<T extends Resource> extends Action {
-	
-	ResourcePool<T> pool;
-	ResourcefulUser<T> user;
+public class Foreseeable extends Action {
 
 	/**
-	 * the constructor of a resource action
+	 * the constructor of a foreseeable action
 	 * @param timeToEnd the duration of the action
-	 * @param pool the resource pool
-	 * @param user the resourceful user
 	 */
-	public ResourceAction(int timeToEnd, ResourcePool<T> pool, ResourcefulUser<T> user) {
+	public Foreseeable(int timeToEnd) {
 		super(timeToEnd);
 		super.remainingTime = timeToEnd;
-		this.pool = pool;
-		this.user = user;
 	}
 	
 	@Override
